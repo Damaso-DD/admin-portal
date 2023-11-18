@@ -1,0 +1,28 @@
+apiVersion: management.loft.sh/v1
+kind: VirtualClusterTemplate
+metadata:
+  creationTimestamp: null
+  name: my-virtual-cluster-template
+spec:
+  access:
+  - users:
+    - '*'
+    verbs:
+    - get
+  description: This virtual cluster template deploys a virtual cluster
+  displayName: Virtual Cluster Template
+  template:
+    accessPoint:
+      ingress: {}
+    helmRelease:
+      chart: {}
+      values: |-
+        # Below you can configure the virtual cluster
+        isolation:
+          enabled: false
+
+        # Checkout https://vcluster.com/docs for more config options
+    metadata: {}
+    spaceTemplate:
+      metadata: {}
+status: {}

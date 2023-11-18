@@ -1,0 +1,15 @@
+apiVersion: management.loft.sh/v1
+kind: VirtualClusterInstance
+metadata:
+  creationTimestamp: null
+  generateName: demo-app
+  namespace: loft-p-default
+spec:
+  clusterRef: {}
+  displayName: test-vcluster
+  owner:
+    user: admin
+    team: loft-admins
+  templateRef:
+    name: vcluster-pro-template
+status: {}
