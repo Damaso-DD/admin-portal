@@ -1,0 +1,15 @@
+apiVersion: management.loft.sh/v1
+kind: VirtualClusterInstance
+metadata:
+  creationTimestamp: null
+  generateName: saas-app
+  namespace: loft-p-saas-tutorial
+spec:
+  clusterRef: {}
+  displayName: saas-instance
+  owner:
+    user: admin
+    team: loft-admins
+  templateRef:
+    name: saas-app-template
+status: {}

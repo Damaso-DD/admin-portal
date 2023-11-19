@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-api
+  template:
+    metadata:
+      labels:
+        app: flask-api
+    spec:
+      containers:
+      - name: flask-api
+        image: damasosanoja/flask-api:latest
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000
+        env:
+        - name: LOFT_DOMAIN
+          valueFrom:
+            secretKeyRef:
+              name: loft-domain-secret
+              key: LOFT_DOMAIN
+        - name: ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: access-key-secret
+              key: ACCESS_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-api-service
+spec:
+  selector:
+    app: flask-api
+  ports:
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
+  type: LoadBalancer
