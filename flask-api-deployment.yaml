@@ -15,7 +15,7 @@ spec:
       containers:
       - name: flask-api
         image: damasosanoja/flask-api:latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         resources:
           limits:
             memory: "128Mi"
